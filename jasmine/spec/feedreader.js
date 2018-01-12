@@ -33,7 +33,7 @@ $(function() {
          */
 
          it('URL is defined', function() {
-     			for (i in allFeeds) {
+     			for (var i in allFeeds) {
      				expect(allFeeds[i].url).toBeDefined();
      				expect(allFeeds[i].url).not.toBe('');
      			}
@@ -45,7 +45,7 @@ $(function() {
          */
 
          it('Name is defined', function() {
-           for (i in allFeeds) {
+           for (var i in allFeeds) {
              expect(allFeeds[i].name).toBeDefined();
              expect(allFeeds[i].name).not.toBe('');
            }
@@ -76,7 +76,7 @@ $(function() {
             expect($('body').hasClass('menu-hidden')).toEqual(false);
             $('.menu-icon-link').click(); // second click to hide
             expect($('body').hasClass('menu-hidden')).toEqual(true);
-          })
+          });
     });
     /* TODO: Write a new test suite named "Initial Entries" */
     describe('Initial Entries', function() {
