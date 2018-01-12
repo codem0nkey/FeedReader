@@ -72,9 +72,9 @@ $(function() {
           */
 
           it('menu icon click visibility toggles', function() {
-            $('.menu-icon-link').click();
+            $('.menu-icon-link').click(); // first click to expand
             expect($('body').hasClass('menu-hidden')).toEqual(false);
-            $('.menu-icon-link').click();
+            $('.menu-icon-link').click(); // second click to hide
             expect($('body').hasClass('menu-hidden')).toEqual(true);
           })
     });
@@ -98,10 +98,35 @@ $(function() {
            expect(testEntry).not.toBe(0);
          });
     });
+
+
     /* TODO: Write a new test suite named "New Feed Selection" */
+    describe('New Feed Selection', function() {
 
         /* TODO: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
+
+         var feedChange1;
+         var feedChange2;
+
+         beforeEach(function(done){
+           loadFeed(0, function() {
+             feedChange1 = $('.feed').text(); //grab feed 1 and convert to text
+             //console.log(feedChange1);
+             loadFeed(1, function(){
+               feedChange2 = $('.feed').text(); //grab next feed and convert to text
+               //console.log(feedChange2);
+             });
+             done();
+           });
+         });
+
+         //Compare the two feeds
+         it('content has changed', function() {
+           expect(feedChange1).not.toBe(feedChange2);
+         });
+    });
+
 }());
